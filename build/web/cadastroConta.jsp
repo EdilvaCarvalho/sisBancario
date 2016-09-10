@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:useBean id="lista" class="modelo.ListarAgenciaBo"/>
+<jsp:useBean id="lista" class="modelo.ListarAgenciaBo" scope="page"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +15,10 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
         <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+        <script src="js/jquery.maskedinput.min.js" type="text/javascript"></script>
+        <script src="js/funcoes.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -48,7 +52,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="titular">CPF do Titular:</label>
-                        <input type="text" class="form-control" name="titular" id="titular" required>
+                        <input type="text" class="form-control" name="cpf" id="cpf" required>
                     </div>
                     <div id="titulares"></div>
                     <div class="form-group col-md-12">
@@ -60,8 +64,5 @@
                 </form>
             </div>
         </div>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/funcoes.js"></script>
     </body>
 </html>

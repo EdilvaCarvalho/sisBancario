@@ -10,7 +10,7 @@ import fabrica.DaoFactory;
  */
 public class CadastrarUsuarioBo {
     
-    public void cadastrar(Usuario usuario){
-        DaoFactory.createFactory(DaoFactory.DAO_BD).criaUsuario().adicionar(usuario);
+    public boolean cadastrar(Usuario usuario){
+        return DaoFactory.createFactory(DaoFactory.DAO_BD).criaUsuario().adicionar(usuario);
     }
 }

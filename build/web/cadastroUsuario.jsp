@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:useBean id="lista" class="modelo.ListarAgenciaBo"/>
+<jsp:useBean id="lista" class="modelo.ListarAgenciaBo" scope="page"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +15,10 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
         <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+        <script src="js/jquery.maskedinput.min.js" type="text/javascript"></script>
+        <script src="js/funcoes.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -92,7 +96,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="tipo">Tipo de Usuário: </label>
-                        <select class="form-control" name="tipo" id="tipo" onchange="this.value==='GERENTE_DE_AGENCIA' ? agencia.disabled=false : agencia.disabled=true;">
+                        <select class="form-control" name="tipo" id="tipo" onchange="this.value === 'GERENTE_DE_AGENCIA' ? agencia.disabled = false : agencia.disabled = true;">
                             <option value="ADMINISTRADOR">Administrador</option>
                             <option value="CLIENTE">Cliente</option>
                             <option value="GERENTE_DE_AGENCIA">Gerente de Agência</option>
@@ -109,7 +113,7 @@
                     </div>
                     <div class="form-group col-md-8">
                         <label for="email">Email: </label>
-                        <input type="text" class="form-control" name="email" id="email" required>
+                        <input type="email" class="form-control" name="email" id="email" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="senha">Senha: </label>
@@ -129,8 +133,5 @@
                 </form>
             </div>
         </div>
-        <script src="js/jquery.min.js"></script>
- 	<script src="js/bootstrap.min.js"></script>
-        <script src="js/funcoes.js"></script>
     </body>
 </html>

@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import modelo.CadastrarAgenciaBo;
 
 /**
@@ -23,14 +22,12 @@ public class CadastrarAgencia implements Command{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        response.setContentType("text/html;charset=UTF-8");
-        HttpSession sessao = request.getSession();
+        
         Agencia agencia = dadosDaAgencia(request);
         CadastrarAgenciaBo cadastro = new CadastrarAgenciaBo();
-        cadastro.cadastrar(agencia);
         
-        if (agencia == null) {
-            sessao.invalidate();
+        request.setAttribute("pagina", "cadastroAgencia.jsp");
+        if (!cadastro.cadastrar(agencia)) {
             try {
                 request.setAttribute("mensagem", "Erro ao cadastrar agência!");
                 request.getRequestDispatcher("paginaDeResposta.jsp").forward(request, response);
@@ -38,9 +35,8 @@ public class CadastrarAgencia implements Command{
                 Logger.getLogger(CadastrarAgencia.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            sessao.setAttribute("agencia", agencia);
             try {
-                request.setAttribute("mensagem", "Agência cadastrada com sucesso!");
+                request.setAttribute("mensagem", "Agência " + agencia.getNome() + " cadastrada com sucesso!");
                 request.getRequestDispatcher("paginaDeResposta.jsp").forward(request, response);
             } catch (ServletException | IOException ex) {
                 Logger.getLogger(CadastrarAgencia.class.getName()).log(Level.SEVERE, null, ex);
@@ -49,6 +45,7 @@ public class CadastrarAgencia implements Command{
     }
     
     private Agencia dadosDaAgencia(HttpServletRequest request) {
+        
         Agencia agencia = new Agencia();
         Endereco endereco = new Endereco();
 

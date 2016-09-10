@@ -23,8 +23,9 @@ public class ContaDao implements ContaDaoIF{
     }
 
     @Override
-    public void adicionar(Conta conta, String agencia) {
+    public boolean adicionar(Conta conta, String agencia) {
         
+        boolean resultado = false;
         PreparedStatement ps;
         
         try {
@@ -36,20 +37,20 @@ public class ContaDao implements ContaDaoIF{
             ps.setDate(2, Date.valueOf(conta.getDataAbertura()));
             ps.setDouble(3, conta.getSaldo());
             ps.setString(4, agencia);
-            ps.executeUpdate();
-            
+            if(ps.executeUpdate() > 0){
+                resultado = adicionaTitulares(conta, ps);
+            }
             ps.close();
         } catch (SQLException | ClassNotFoundException e) {
-            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ContaDao.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             conn.desconecta();
         }
-            
+        return resultado;   
     }
     
-    private void adicionaTitulares(Conta conta){
-        
-        PreparedStatement ps;
+    private boolean adicionaTitulares(Conta conta, PreparedStatement ps){
+        boolean resultado = false;
         
         try {
             String sql2 = "INSERT INTO TITULAR_CONTA (CPF_TITULAR, NUMERO_CONTA) VALUES (?, ?)";
@@ -57,17 +58,18 @@ public class ContaDao implements ContaDaoIF{
             for(Usuario titular : conta.getTitulares()){
                 ps.setString(1, titular.getCpf());
                 ps.setString(2, conta.getNumero());
-                ps.executeUpdate();
-                ps.close();
+                resultado = ps.executeUpdate() > 0;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ContaDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        return resultado;
     }
 
     @Override
-    public void remover(String numero_conta) {
+    public boolean remover(String numero_conta) {
+        boolean resultado = false;
         PreparedStatement ps;
         
         try {
@@ -76,13 +78,17 @@ public class ContaDao implements ContaDaoIF{
             String sql = "DELETE FROM CONTA WHERE NUMERO_CONTA = ?";
             ps = conn.con.prepareStatement(sql);
             ps.setString(1, numero_conta);
-            ps.executeUpdate();
+            if(ps.executeUpdate() > 0){
+                resultado = true;
+            }
             ps.close();
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ContaDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             conn.desconecta();
         }
+        
+        return resultado;
     }
 
     @Override

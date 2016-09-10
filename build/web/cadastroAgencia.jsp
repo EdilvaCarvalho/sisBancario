@@ -13,6 +13,10 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
         <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+        <script src="js/jquery.maskedinput.min.js" type="text/javascript"></script>
+        <script src="js/funcoes.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -29,7 +33,7 @@
                         <input type="text" class="form-control" name="nome" id="nome" autofocus required>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="numeroAgencia">Número: </label>
+                        <label for="numeroAgencia">Número da Agência: </label>
                         <input type="text" class="form-control" name="numeroAgencia" id="numeroAgencia" required>
                     </div>
                     <div class="form-group col-md-6">
@@ -82,7 +86,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="telefone">Telefone: </label>
-                        <input type="text" class="form-control" name="telefone" id="telefone" required>
+                        <input type="text" class="form-control" name="telefone" id="telefone" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" required>
                     </div>
                     <div id="telefones"></div>
                     <div class="form-group col-md-12">
@@ -94,8 +98,5 @@
                 </form>
             </div>
         </div>
-        <script src="js/jquery.min.js"></script>
- 	<script src="js/bootstrap.min.js"></script>
-        <script src="js/funcoes.js"></script>
     </body>
 </html>

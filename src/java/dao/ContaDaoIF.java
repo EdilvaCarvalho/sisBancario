@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface ContaDaoIF {
     
-    public void adicionar(Conta conta, String agencia);
+    public boolean adicionar(Conta conta, String agencia);
     
-    public void remover(String numero_conta);
+    public boolean remover(String numero_conta);
     
     public void adicionaTitulares(List<String> cpfTitular, String numeroConta);
     

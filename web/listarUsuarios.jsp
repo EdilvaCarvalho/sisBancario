@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:useBean id="lista" class="modelo.ListarUsuarioBo"/>
+<jsp:useBean id="lista" class="modelo.ListarUsuarioBo" scope="page"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,37 +20,42 @@
     <body>
         <div><jsp:include page="paginaDoAdministrador.jsp"/></div>
         <div class="container text-center">
+            <h2>Usuários</h2>
+            <form method="post" class="navbar-form navbar-right" action="Controller?command=ExibirUsuario" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="cpf" id="cpf" placeholder="Informe o CPF do usuário">
+                </div>
+                <input id="btnPesquisar" type="submit" value="Pesquisar" class="btn btn-success">
+            </form>
         </div>
-        <div class="container" style="width:80%">
+        <div class="container" style="width:95%">
             <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                     <table class="table table-striped">
                         <tr class="row">
-                                <td>CPF</td>
-                                <td>NOME</td>
-                                <td>RG</td>
-                                <td>DATA DE NASC</td>
-                                <td>EMAIL</td>
-                                <td>TIPO DE USUÁRIO</td>
-                                <td>UF</td>
-                                <td>CIDADE</td>
-                                <td>BAIRRO</td>
-                                <td>RUA</td>
-                                <td>NÚMERO</td>
-                            </tr>
-                        <c:forEach var="usuario" items="${lista.listar()}">
+                            <td>CPF</td>
+                            <td>NOME</td>
+                            <td>RG</td>
+                            <td>DATA DE NASC</td>
+                            <td>EMAIL</td>
+                            <td>TIPO DE USUÁRIO</td>
+                            <td>DETALHAR USUÁRIO</td>
+                            <td>EXCLUIR USUÁRIO</td>
+                        </tr>
+                        <c:forEach var="user" items="${lista.listar()}">
                             <tr class="row">
-                                <td>${usuario.cpf}</td>
-                                <td>${usuario.nome}</td>
-                                <td>${usuario.rg}</td>
-                                <td>${usuario.dataNasc}</td>
-                                <td>${usuario.email}</td>
-                                <td>${usuario.tipo}</td>
-                                <td>${usuario.endereco.estado}</td>
-                                <td>${usuario.endereco.cidade}</td>
-                                <td>${usuario.endereco.bairro}</td>
-                                <td>${usuario.endereco.rua}</td>
-                                <td>${usuario.endereco.numero}</td>
+                                <td>${user.cpf}</td>
+                                <td>${user.nome}</td>
+                                <td>${user.rg}</td>
+                                <td>${user.dataNasc}</td>
+                                <td>${user.email}</td>
+                                <td>${user.tipo}</td>
+                                <td>
+                                    <a class="btn btn-primary btn-block" href="Controller?command=ExibirUsuario&cpf=${user.cpf}">Detalhar</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger btn-block" href="Controller?command=RemoverUsuario&cpf=${user.cpf}">Excluir</a>
+                                </td>
                             </tr>
                         </c:forEach>
                     </table>

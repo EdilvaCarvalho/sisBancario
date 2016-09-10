@@ -20,6 +20,7 @@ import java.util.List;
 import modelo.AbrirConta;
 import modelo.AdicionarTitulares;
 import modelo.CadastrarUsuarioBo;
+import modelo.ExibirAgenciaBo;
 import modelo.ListarAgenciaBo;
 
 /**
@@ -32,19 +33,18 @@ public class NovoMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /**
-         * Endereco endereco = new Endereco("Paraíba", "Souza", "Centro", "bla
-         * bla", "19"); List<String> telefones = new ArrayList<>();
-         * telefones.add("9945399"); telefones.add("9111199");
-         * telefones.add("9933399"); Usuario user = new
-         * Usuario("556.111.133-11", "Viviane Vieira", "99036",
-         * LocalDate.of(1993, Month.APRIL, 23), "vivi@gmail.com",
-         * TipoUsuario.GERENTE_DE_AGENCIA, "12345", endereco, telefones,
-         * "foto"); CadastrarUsuarioBo cad = new CadastrarUsuarioBo();
+        
+        Endereco endereco = new Endereco("Paraíba", "Souza", "Centro", "bla bla", "19"); List<String> telefones = new ArrayList<>();
+        telefones.add("9945399"); 
+        telefones.add("9111199");
+        telefones.add("9933399"); 
+        Usuario user = new Usuario("556.111.133-11", "Viviane Vieira", "99036",
+        LocalDate.of(1993, Month.APRIL, 23), "vivi@gmail.com",
+        TipoUsuario.GERENTE_DE_AGENCIA, "12345", endereco, telefones, "foto"); CadastrarUsuarioBo cad = new CadastrarUsuarioBo();
         cad.cadastrar(user);
-         */
-        //UsuarioDao dao = new UsuarioDao();
-        //dao.adicionar(user);
+        
+        UsuarioDao dao = new UsuarioDao();
+        dao.adicionar(user);
 
         /**
          * Endereco endereco = new Endereco(); Usuario usuario = new Usuario();
@@ -52,15 +52,15 @@ public class NovoMain {
         cad.cadastrar(usuario);
          */
         //testes
-        Conta conta = new Conta("2222", LocalDate.now(), 0);
-        AbrirConta abrir = new AbrirConta();
-        abrir.cadastrar(conta, "0011");
-        String[] vet = {"101.326.001-63", "123.322.333-12"};
-        List<String> lista = new ArrayList<>();
-        lista.addAll(Arrays.asList(vet));
-        List<String> lista2 = lista;
-        AdicionarTitulares add = new AdicionarTitulares();
-        add.adicionar(lista2, "2222");
+//        Conta conta = new Conta("2222", LocalDate.now(), 0);
+//        AbrirConta abrir = new AbrirConta();
+//        abrir.cadastrar(conta, "0011");
+//        String[] vet = {"101.326.001-63", "123.322.333-12"};
+//        List<String> lista = new ArrayList<>();
+//        lista.addAll(Arrays.asList(vet));
+//        List<String> lista2 = lista;
+//        AdicionarTitulares add = new AdicionarTitulares();
+//        add.adicionar(lista2, "2222");
 //        String[] vet = {"Edilva", "Edviges", "Eliete", "Eliane", "Eretusa"};
 //        
 //        System.out.println(Arrays.toString(vet));
@@ -69,5 +69,8 @@ public class NovoMain {
 //        lista.addAll(Arrays.asList(vet));
 //        
 //        System.out.println(lista.toString());
+        ExibirAgenciaBo exibir = new ExibirAgenciaBo();
+        Agencia agencia = exibir.exibir("0099");
+        System.out.println(agencia.toString());
     }
 }

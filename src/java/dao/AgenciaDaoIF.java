@@ -10,13 +10,15 @@ import java.util.List;
  */
 public interface AgenciaDaoIF {
     
-    public void adicionar(Agencia agencia);
+    public boolean adicionar(Agencia agencia);
     
     public void adicionaGerentes(String numeroAgencia, String gerente);
     
-    public void remover(String numero_agencia);
+    public boolean remover(String numero_agencia);
     
     public Agencia agenciaPorNumero(String numero_agencia);
+    
+    public Agencia agenciaPorGerente(String cpfGerente);
     
     public List<Agencia> listar();
 }

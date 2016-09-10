@@ -10,7 +10,7 @@ import fabrica.DaoFactory;
  */
 public class AbrirConta {
     
-    public void cadastrar(Conta conta, String agencia){
-        DaoFactory.createFactory(DaoFactory.DAO_BD).criaConta().adicionar(conta, agencia);
+    public boolean cadastrar(Conta conta, String agencia){
+        return DaoFactory.createFactory(DaoFactory.DAO_BD).criaConta().adicionar(conta, agencia);
     }
 }

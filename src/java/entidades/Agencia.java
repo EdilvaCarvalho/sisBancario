@@ -20,14 +20,19 @@ public class Agencia {
         this.nome = nome;
         this.endereco = endereco;
         this.telefones = new ArrayList<>();
-        this.gerentes = new ArrayList<>();
+    }
+
+    public Agencia(String numero, String nome, Endereco endereco, List<String> telefones, List<Usuario> gerentes) {
+        this.numero = numero;
+        this.nome = nome;
+        this.endereco = endereco;
+        this.telefones = telefones;
+        this.gerentes = gerentes;
     }
 
     public Agencia() {
     }
 
-    
-    
     /**
      * @return the numero
      */
@@ -96,6 +101,11 @@ public class Agencia {
      */
     public void setGerentes(List<Usuario> gerentes) {
         this.gerentes = gerentes;
+    }
+
+    @Override
+    public String toString() {
+        return "Agencia{" + "numero=" + numero + ", nome=" + nome + ", endereco=" + endereco + ", telefones=" + telefones + ", gerentes=" + gerentes + '}';
     }
     
 }

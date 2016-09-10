@@ -1,7 +1,6 @@
 
 package modelo;
 
-import entidades.Usuario;
 import excecoes.EmailExistenteException;
 import fabrica.DaoFactory;
 
@@ -11,7 +10,7 @@ import fabrica.DaoFactory;
  */
 public class ExcluirUsuarioBo {
     
-    public void excluir(Usuario usuario) throws EmailExistenteException{
-        DaoFactory.createFactory(DaoFactory.DAO_BD).criaUsuario().remover(usuario.getEmail());
+    public boolean excluir(String cpf) throws EmailExistenteException{
+        return DaoFactory.createFactory(DaoFactory.DAO_BD).criaUsuario().remover(cpf);
     }
 }

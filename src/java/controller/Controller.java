@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Controller extends HttpServlet {
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -47,7 +47,7 @@ public class Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        request.setCharacterEncoding("UTF-8");
         try {
             String action = request.getParameter("command");
             Command command = (Command) Class.forName("commands."+action).newInstance();

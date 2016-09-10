@@ -14,12 +14,16 @@ import java.util.List;
  */
 public interface UsuarioDaoIF {
     
-    public void adicionar(Usuario usuario);
+    public boolean adicionar(Usuario usuario);
     
-    public void remover(String cpf);
+    public boolean remover(String cpf);
     
     public Usuario autenticar(String email, String senha);
     
     public List<Usuario> listar();
+    
+    public List<Usuario> listarClientes(String agencia);
+    
+    public Usuario getUsuario(String cpf);
     
 }

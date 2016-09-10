@@ -41,7 +41,12 @@ public class Autenticar implements Command{
         } else {
             sessao.setAttribute("usuario", usuario);
             try {
-                request.getRequestDispatcher("paginaDoAdministrador.jsp").forward(request, response);
+                switch(usuario.getTipo()){
+                    case CLIENTE: request.getRequestDispatcher("paginaDoCliente.jsp").forward(request, response);
+                    case ADMINISTRADOR: request.getRequestDispatcher("paginaDoAdministrador.jsp").forward(request, response);
+                    case GERENTE_DE_AGENCIA: request.getRequestDispatcher("paginaDoGerenteDeAgencia.jsp").forward(request, response);
+                    case GERENTE_GERAL_DO_BANCO: request.getRequestDispatcher("paginaDoGerenteGeral.jsp").forward(request, response);
+                }
             } catch (ServletException | IOException ex) {
                 Logger.getLogger(Autenticar.class.getName()).log(Level.SEVERE, null, ex);
             }

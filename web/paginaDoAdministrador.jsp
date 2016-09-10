@@ -24,7 +24,7 @@
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> 
                         <span class="sr-only">Toggle navigation</span> 
                     </button> 
-                    <a class="navbar-brand" href="paginaDoAdministrador.jsp">Banco da Gente</a>
+                    <a class="navbar-brand" href="paginaDoAdministrador.jsp">Banco da Gente - Administrador</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -33,27 +33,25 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Usuários</a>
                             <ul class="nav dropdown-menu">
                                 <li><a href="cadastroUsuario.jsp">Cadastrar Usuário</a></li>
-                                <li><a href="listarUsuarios.jsp">Buscar Usuário</a></li>
-                                <li><a href="#">Excluir Usuário</a></li>
+                                <li><a href="listarUsuarios.jsp">Buscar Usuários</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Agências</a>
                             <ul class="nav dropdown-menu">
                                 <li><a href="cadastroAgencia.jsp">Cadastrar Agência</a></li>
-                                <li><a href="#">Buscar Agência</a></li>
-                                <li><a href="#">Excluir Agência</a></li>
+                                <li><a href="listarAgencias.jsp">Buscar Agências</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Contas</a>
                             <ul class="nav dropdown-menu">
                                 <li><a href="cadastroConta.jsp">Abrir Conta</a></li>
-                                <li><a href="#">Fechar Conta</a></li>
+                                <li><a href="#">Buscar Contas</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a >Sair</a>
+                            <a href="Controller?command=Sair">Sair</a>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->

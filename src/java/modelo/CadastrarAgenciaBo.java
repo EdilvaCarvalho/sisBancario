@@ -10,7 +10,7 @@ import fabrica.DaoFactory;
  */
 public class CadastrarAgenciaBo {
     
-    public void cadastrar(Agencia agencia){
-        DaoFactory.createFactory(DaoFactory.DAO_BD).criaAgencia().adicionar(agencia);
+    public boolean cadastrar(Agencia agencia){
+        return DaoFactory.createFactory(DaoFactory.DAO_BD).criaAgencia().adicionar(agencia);
     }
 }

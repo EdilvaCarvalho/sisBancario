@@ -10,7 +10,7 @@ import fabrica.DaoFactory;
  */
 public class FecharConta {
     
-    public void excluir(Conta conta){
-        DaoFactory.createFactory(DaoFactory.DAO_BD).criaConta().remover(conta.getNumero());
+    public boolean excluir(Conta conta){
+        return DaoFactory.createFactory(DaoFactory.DAO_BD).criaConta().remover(conta.getNumero());
     }
 }

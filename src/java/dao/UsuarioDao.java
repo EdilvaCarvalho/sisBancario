@@ -28,8 +28,8 @@ public class UsuarioDao implements UsuarioDaoIF{
     }
     
     @Override
-    public void adicionar(Usuario usuario) {
-        
+    public boolean adicionar(Usuario usuario) {
+        boolean resultado = false;
         PreparedStatement ps;
         
         try {
@@ -53,17 +53,22 @@ public class UsuarioDao implements UsuarioDaoIF{
             ps.setString(13, usuario.getFoto());
             
             if (ps.executeUpdate() > 0) {
-                adicionaTelefone(usuario, ps);
+                resultado = adicionaTelefone(usuario, ps);
             }
             ps.close();
+            
         } catch (SQLException | ClassNotFoundException e) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             conn.desconecta();
         }
+        
+        return resultado;
     }
     
-    private void adicionaTelefone(Usuario usuario, PreparedStatement ps){
+    private boolean adicionaTelefone(Usuario usuario, PreparedStatement ps){
+        
+        boolean resultado = false;
         
         try {
             String sql = "INSERT INTO TELEFONE_USUARIO (CPF_USUARIO, TELEFONE) VALUES (?, ?)";
@@ -71,17 +76,18 @@ public class UsuarioDao implements UsuarioDaoIF{
             for(String tel : usuario.getTelefones()){
                 ps.setString(1, usuario.getCpf());
                 ps.setString(2, tel);
-                ps.executeUpdate();
+                resultado = ps.executeUpdate() > 0;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        return resultado;
     }
 
     @Override
-    public void remover(String cpf) {
-        
+    public boolean remover(String cpf) {
+        boolean resultado = false;
         PreparedStatement ps;
         
         try {
@@ -90,13 +96,17 @@ public class UsuarioDao implements UsuarioDaoIF{
             String sql = "DELETE FROM USUARIO WHERE CPF = ?";
             ps = conn.con.prepareStatement(sql);
             ps.setString(1, cpf);
-            ps.executeUpdate();
+            if(ps.executeUpdate() > 0){
+                resultado = true;
+            }
             ps.close();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             conn.desconecta();
         }  
+        
+        return resultado;
     }
 
     @Override
@@ -112,6 +122,32 @@ public class UsuarioDao implements UsuarioDaoIF{
             ps = conn.con.prepareStatement(sql);
             ps.setString(1, email);
             ps.setString(2, senha);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                usuario = dadosDoUsuario(rs);
+            }
+            ps.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conn.desconecta();
+        }
+        
+        return usuario;
+    }
+    
+    @Override
+    public Usuario getUsuario(String cpf) {
+        
+        PreparedStatement ps;
+        Usuario usuario = null;
+        
+        try {
+            conn.conecta();
+            
+            String sql = "SELECT * FROM USUARIO WHERE CPF = ?";
+            ps = conn.con.prepareStatement(sql);
+            ps.setString(1, cpf);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 usuario = dadosDoUsuario(rs);
@@ -182,6 +218,30 @@ public class UsuarioDao implements UsuarioDaoIF{
             conn.conecta();
             String sql = "SELECT * FROM USUARIO";
             ps = conn.con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                lista.add(dadosDoUsuario(rs));
+            }
+            ps.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            conn.desconecta();
+        }
+        return lista;
+    }
+    
+    public List<Usuario> listarClientes(String agencia){
+        PreparedStatement ps;
+        List<Usuario> lista = new ArrayList<>();
+        
+        try {
+            conn.conecta();
+            String sql = "SELECT * FROM ((USUARIO U JOIN TITULAR_CONTA T ON U.CPF = T.CPF_TITULAR) "
+                    + "JOIN CONTA C ON C.NUMERO_CONTA = T.NUMERO_CONTA) WHERE C.NUMERO_AGENCIA = ?";
+            ps = conn.con.prepareStatement(sql);
+            ps.setString(1, agencia);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {

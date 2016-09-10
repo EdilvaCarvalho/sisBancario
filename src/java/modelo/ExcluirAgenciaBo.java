@@ -10,7 +10,7 @@ import fabrica.DaoFactory;
  */
 public class ExcluirAgenciaBo {
     
-    public void excluir(Agencia agencia){
-        DaoFactory.createFactory(DaoFactory.DAO_BD).criaAgencia().remover(agencia.getNumero());
+    public boolean excluir(String numAgencia){
+        return DaoFactory.createFactory(DaoFactory.DAO_BD).criaAgencia().remover(numAgencia);
     }
 }

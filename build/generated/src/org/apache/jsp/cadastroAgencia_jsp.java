@@ -3,11 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import entidades.Agencia;
-import modelo.ListarAgenciaBo;
-import java.util.List;
 
-public final class cadastroUsuario_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class cadastroAgencia_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -47,9 +44,6 @@ public final class cadastroUsuario_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -58,6 +52,10 @@ public final class cadastroUsuario_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("        <link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">\n");
       out.write("        <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>\n");
       out.write("        <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>\n");
+      out.write("        <script src=\"js/jquery.maskedinput.min.js\" type=\"text/javascript\"></script>\n");
+      out.write("        <script src=\"js/funcoes.js\"></script>\n");
+      out.write("        <script src=\"js/jquery.min.js\"></script>\n");
+      out.write("        <script src=\"js/bootstrap.min.js\"></script>\n");
       out.write("        <title>JSP Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
@@ -65,27 +63,19 @@ public final class cadastroUsuario_jsp extends org.apache.jasper.runtime.HttpJsp
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "paginaDoAdministrador.jsp", out, false);
       out.write("</div>\n");
       out.write("        <div class=\"container text-center\">\n");
-      out.write("            <h1>Dados do usuário</h1>\n");
+      out.write("            <h1>Dados da Agência</h1>\n");
       out.write("            <br>\n");
       out.write("        </div>\n");
       out.write("        <div class=\"container\" style=\"width:60%\">\n");
       out.write("            <div class=\"row\">\n");
-      out.write("                <form method=\"post\" id=\"cadastroUsuario\" action=\"Controller?command=CadastrarUsuario\" name=\"formUsuario\">\n");
+      out.write("                <form method=\"post\" id=\"cadastroAgencia\" action=\"Controller?command=CadastrarAgencia\">\n");
       out.write("                    <div class=\"form-group col-md-8\">\n");
       out.write("                        <label for=\"nome\">Nome: </label>\n");
       out.write("                        <input type=\"text\" class=\"form-control\" name=\"nome\" id=\"nome\" autofocus required>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"form-group col-md-4\">\n");
-      out.write("                        <label for=\"data\">Data de nascimento: </label>\n");
-      out.write("                        <input type=\"date\" class=\"form-control\" name=\"data\" id=\"data\" required>\n");
-      out.write("                    </div>\n");
-      out.write("                    <div class=\"form-group col-md-6\">\n");
-      out.write("                        <label for=\"rg\">Registro Geral (RG): </label>\n");
-      out.write("                        <input type=\"text\" class=\"form-control\" name=\"rg\" id=\"rg\" required>\n");
-      out.write("                    </div>\n");
-      out.write("                    <div class=\"form-group col-md-6\">\n");
-      out.write("                        <label for=\"cpf\">CPF: </label>\n");
-      out.write("                        <input type=\"text\" class=\"form-control\" name=\"cpf\" id=\"cpf\" required>\n");
+      out.write("                        <label for=\"numeroAgencia\">Número: </label>\n");
+      out.write("                        <input type=\"text\" class=\"form-control\" name=\"numeroAgencia\" id=\"numeroAgencia\" required>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"form-group col-md-6\">\n");
       out.write("                        <label for=\"estado\">Estado: </label>\n");
@@ -133,42 +123,11 @@ public final class cadastroUsuario_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("                    </div>\n");
       out.write("                    <div class=\"form-group col-md-2\">\n");
       out.write("                        <label for=\"numero\">Número: </label>\n");
-      out.write("                        <input type=\"text\" class=\"form-control\" name=\"numero\" id=\"numero\" min=\"1\" required>\n");
-      out.write("                    </div>\n");
-      out.write("                    <div class=\"form-group col-md-6\">\n");
-      out.write("                        <label for=\"tipo\">Tipo de Usuário: </label>\n");
-      out.write("                        <select class=\"form-control\" name=\"tipo\" id=\"tipo\" onchange=\"this.value==='GERENTE_DE_AGENCIA' ? agencia.disabled=false : agencia.disabled=true;\">\n");
-      out.write("                            <option value=\"ADMINISTRADOR\">Administrador</option>\n");
-      out.write("                            <option value=\"CLIENTE\">Cliente</option>\n");
-      out.write("                            <option value=\"GERENTE_DE_AGENCIA\">Gerente de Agência</option>\n");
-      out.write("                            <option value=\"GERENTE_GERAL_DO_BANCO\">Gerente Geral do Banco</option>\n");
-      out.write("                        </select>\n");
-      out.write("                    </div>\n");
-      out.write("                    <div class=\"form-group col-md-6\">\n");
-      out.write("                        <label for=\"tipo\">Agencia: </label>\n");
-      out.write("                        <select class=\"form-control\" name=\"agencia\" id=\"agencia\" disabled>\n");
-      out.write("                            ");
-
-                                ListarAgenciaBo lista = new ListarAgenciaBo();
-                                List<Agencia> agencia = lista.listar();
-                                for(Agencia a: agencia){
-                                    out.print("<option value="+ a.getNumero() +">"+ a.getNome() +"</option>");
-                                }
-                            
-      out.write("\n");
-      out.write("                        </select>\n");
-      out.write("                    </div>\n");
-      out.write("                    <div class=\"form-group col-md-8\">\n");
-      out.write("                        <label for=\"email\">Email: </label>\n");
-      out.write("                        <input type=\"text\" class=\"form-control\" name=\"email\" id=\"email\" required>\n");
-      out.write("                    </div>\n");
-      out.write("                    <div class=\"form-group col-md-4\">\n");
-      out.write("                        <label for=\"senha\">Senha: </label>\n");
-      out.write("                        <input type=\"text\" class=\"form-control\" name=\"senha\" id=\"senha\" required>\n");
+      out.write("                        <input type=\"text\" class=\"form-control\" name=\"numero\" id=\"numero\" min=\"1\" title=\"O número nínimo é 1\" required>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"form-group col-md-4\">\n");
       out.write("                        <label for=\"telefone\">Telefone: </label>\n");
-      out.write("                        <input type=\"text\" class=\"form-control\" name=\"telefone\" id=\"telefone\" required>\n");
+      out.write("                        <input type=\"text\" class=\"form-control\" name=\"telefone\" id=\"telefone\" pattern=\"\\([0-9]{2}\\)[\\s][0-9]{4}-[0-9]{4,5}\" required>\n");
       out.write("                    </div>\n");
       out.write("                    <div id=\"telefones\"></div>\n");
       out.write("                    <div class=\"form-group col-md-12\">\n");
@@ -180,9 +139,6 @@ public final class cadastroUsuario_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("                </form>\n");
       out.write("            </div>\n");
       out.write("        </div>\n");
-      out.write("        <script src=\"js/jquery.min.js\"></script>\n");
-      out.write(" \t<script src=\"js/bootstrap.min.js\"></script>\n");
-      out.write("        <script src=\"js/funcoes.js\"></script>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
