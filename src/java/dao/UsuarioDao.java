@@ -167,7 +167,6 @@ public class UsuarioDao implements UsuarioDaoIF{
         List<String> telefones = new ArrayList();
         
         try {
-            conn.conecta();
             String sql = "SELECT * FROM TELEFONE_USUARIO WHERE CPF_USUARIO = ?";
             ps = conn.con.prepareStatement(sql);
             ps.setString(1, cpf);
@@ -177,7 +176,7 @@ public class UsuarioDao implements UsuarioDaoIF{
                 telefones.add(rs.getString("TELEFONE"));
             }
             ps.close();
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         

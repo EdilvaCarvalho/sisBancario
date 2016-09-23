@@ -35,11 +35,8 @@
                                 <li><a href="Controller?command=ListarClientesDeAgencia">Listar Clientes</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Contas</a>
-                            <ul class="nav dropdown-menu">
-                                <li><a >Filtrar Contas</a></li>
-                            </ul>
+                        <li>
+                            <a href="filtrarContas.jsp">Filtrar Contas</a>
                         </li>
                         <li>
                             <a href="Controller?command=Sair">Sair</a>

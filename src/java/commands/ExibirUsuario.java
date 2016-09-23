@@ -25,23 +25,18 @@ public class ExibirUsuario implements Command{
         ExibirUsuarioBo exibi = new ExibirUsuarioBo();
         Usuario user = exibi.exibir(cpf);
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
+        String url = request.getHeader("referer");
+        request.setAttribute("pagina", url);
         try {
             if(user != null){
                 request.setAttribute("user", user);
                 if(usuario.getTipo() == TipoUsuario.ADMINISTRADOR){
-                    request.setAttribute("pagina", "listarUsuarios.jsp");
                     request.getRequestDispatcher("detalhesDoUsuario.jsp").forward(request, response);
                 }else{
-                    request.setAttribute("pagina", "listarClientes.jsp");
                     request.getRequestDispatcher("detalhesDoCliente.jsp").forward(request, response);
                 }
             }else{
                 request.setAttribute("mensagem", "Não encontrado!");
-                if(usuario.getTipo() == TipoUsuario.ADMINISTRADOR){
-                    request.setAttribute("pagina", "listarUsuarios.jsp");
-                }else{
-                    request.setAttribute("pagina", "listarClientes.jsp");
-                }
                 request.getRequestDispatcher("paginaDeResposta.jsp").forward(request, response);
             }
         } catch (ServletException | IOException ex) {

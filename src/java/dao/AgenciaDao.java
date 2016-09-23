@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.ExibirUsuarioBo;
 
 /**
  *
@@ -142,7 +143,8 @@ public class AgenciaDao implements AgenciaDaoIF {
     private List<Usuario> gerentesDaAgencia(String numeroAgencia) {
         PreparedStatement ps;
         List<Usuario> gerentes = new ArrayList();
-        UsuarioDao dao = new UsuarioDao();
+        ExibirUsuarioBo exibir = new ExibirUsuarioBo();
+        Usuario user;
 
         String sql = "SELECT * FROM (GERENTE_AGENCIA G JOIN USUARIO U ON G.GERENTE = U.CPF) "
                 + "WHERE G.NUMERO_AGENCIA = ?";
@@ -150,9 +152,10 @@ public class AgenciaDao implements AgenciaDaoIF {
             ps = conn.con.prepareStatement(sql);
             ps.setString(1, numeroAgencia);
             ResultSet rs = ps.executeQuery();
-
+            
             while (rs.next()) {
-                Usuario user = dao.dadosDoUsuario(rs);
+                String cpf = rs.getString("CPF");
+                user = exibir.exibir(cpf);
                 gerentes.add(user);
             }
             ps.close();

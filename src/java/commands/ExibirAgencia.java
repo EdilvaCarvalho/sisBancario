@@ -26,23 +26,18 @@ public class ExibirAgencia implements Command{
         ExibirAgenciaBo exibir = new ExibirAgenciaBo();
         Agencia agencia = exibir.exibir(numero);
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
+        String url = request.getHeader("referer");
+        request.setAttribute("pagina", url);
         try {
             if(agencia != null){
                 request.setAttribute("agencia", agencia);
                 if(usuario.getTipo() == TipoUsuario.ADMINISTRADOR){
-                    request.setAttribute("pagina", "listarAgencia.jsp");
                     request.getRequestDispatcher("detalhesDaAgencia.jsp").forward(request, response);
                 }else{
-                    request.setAttribute("pagina", "listarAgencias2.jsp");
                     request.getRequestDispatcher("detalhesDaAgencia2.jsp").forward(request, response);
                 }
             }else{
                 request.setAttribute("mensagem", "Erro ao exibir detalhes da agência!");
-                if(usuario.getTipo() == TipoUsuario.ADMINISTRADOR){
-                    request.setAttribute("pagina", "listarAgencia.jsp");
-                }else{
-                    request.setAttribute("pagina", "listarAgencias2.jsp");
-                }
                 request.getRequestDispatcher("paginaDeResposta.jsp").forward(request, response);
             }
         } catch (ServletException | IOException ex) {

@@ -5,8 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:useBean id="lista" class="modelo.ListarUsuarioBo" scope="page"/>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="df" uri="/WEB-INF/myTags"%>
+<jsp:useBean id="listaUsuarios" class="modelo.ListarUsuarioBo" scope="page"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,12 +43,12 @@
                             <td>DETALHAR USUÁRIO</td>
                             <td>EXCLUIR USUÁRIO</td>
                         </tr>
-                        <c:forEach var="user" items="${lista.listar()}">
+                        <c:forEach var="user" items="${listaUsuarios.listar()}">
                             <tr class="row">
                                 <td>${user.cpf}</td>
                                 <td>${user.nome}</td>
                                 <td>${user.rg}</td>
-                                <td>${user.dataNasc}</td>
+                                <td><df:dataFormatada data="${user.dataNasc}" /></td>
                                 <td>${user.email}</td>
                                 <td>${user.tipo}</td>
                                 <td>

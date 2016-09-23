@@ -38,7 +38,7 @@
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Contas</a>
                             <ul class="nav dropdown-menu">
-                                <li><a href="">Listar Contas</a></li>
+                                <li><a href="listarContas2.jsp">Listar Contas</a></li>
                             </ul>
                         </li>
                         <li>

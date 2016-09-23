@@ -5,7 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="df" uri="/WEB-INF/myTags"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -44,7 +45,7 @@
                                 <td>${user.cpf}</td>
                                 <td>${user.nome}</td>
                                 <td>${user.rg}</td>
-                                <td>${user.dataNasc}</td>
+                                <td><df:dataFormatada data="${user.dataNasc}" /></td>
                                 <td>${user.email}</td>
                                 <td class="col-md-2">
                                     <a class="btn btn-primary btn-block" href="Controller?command=ExibirUsuario&cpf=${user.cpf}">Detalhar</a>

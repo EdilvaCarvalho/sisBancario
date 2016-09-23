@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:useBean id="lista" class="modelo.ListarAgenciaBo" scope="page"/>
+<jsp:useBean id="listaAgencias2" class="modelo.ListarAgenciaBo" scope="page"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,7 +39,7 @@
                             <td><strong>CIDADE</strong></td>
                             <td><strong>DETALHAR AGÊNCIA</strong></td>
                         </tr>
-                        <c:forEach var="agencia" items="${lista.listar()}">
+                        <c:forEach var="agencia" items="${listaAgencias2.listar()}">
                             <tr class="row">
                                 <td>${agencia.numero}</td>
                                 <td>${agencia.nome}</td>

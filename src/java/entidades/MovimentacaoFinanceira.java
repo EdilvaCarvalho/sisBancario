@@ -27,6 +27,16 @@ public class MovimentacaoFinanceira {
         this.titular = titular;
     }
 
+    public MovimentacaoFinanceira(int id, LocalDate data, LocalTime hora, TipoMovimentacao tipo, double valor, Conta conta, Usuario titular) {
+        this.id = id;
+        this.data = data;
+        this.hora = hora;
+        this.tipo = tipo;
+        this.valor = valor;
+        this.conta = conta;
+        this.titular = titular;
+    }
+
     public MovimentacaoFinanceira() {
     }
     
@@ -126,6 +136,29 @@ public class MovimentacaoFinanceira {
      */
     public void setConta(Conta conta) {
         this.conta = conta;
+    }
+    
+    public boolean sacar(){
+        if((conta.getSaldo() < valor) || (valor <= 0)){
+            return false;
+        }else{
+            conta.setSaldo(conta.getSaldo() - valor);
+            return true;
+        }
+    }
+    
+    public boolean depositar(){
+        if(valor <= 0){
+            return false;
+        }else{
+            conta.setSaldo(conta.getSaldo() + valor);
+            return true;
+        }
+    }
+    
+    public void transfirir(Conta conta){
+        sacar();
+        conta.setSaldo(conta.getSaldo() + valor);
     }
 
     @Override

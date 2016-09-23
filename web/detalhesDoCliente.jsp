@@ -1,11 +1,12 @@
-<%-- 
+<%--
     Document   : detalhesDoCliente
     Created on : 05/09/2016, 19:42:07
     Author     : Edilva
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="df" uri="/WEB-INF/myTags"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,10 +25,11 @@
         <div class="container" style="width:90%">
             <div class="row">
                 <div class="form-group">
+                    
                     <p><strong>CPF:</strong> ${user.cpf}</p>
                     <p><strong>Nome:</strong> ${user.nome}</p>
                     <p><strong>RG:</strong> ${user.rg}</p>
-                    <p><strong>Data de Nascimento:</strong> ${user.dataNasc}</p>
+                    <p><strong>Data de Nascimento:</strong> <df:dataFormatada data="${user.dataNasc}" /></p>
                     <p><strong>Email:</strong> ${user.email}</p>
                     <p><strong>Tipo de Usuário:</strong> ${user.tipo}</p>
                     <p><strong>Endereço</strong></p>

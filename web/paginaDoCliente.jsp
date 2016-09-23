@@ -30,14 +30,10 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Realizar Trasferência</a>
+                            <a href="transferencia.jsp">Realizar Trasferência</a>
                         </li>
                         <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Conta</a>
-                            <ul class="nav dropdown-menu">
-                                <li><a href="">Saldo</a></li>
-                                <li><a href="">Extrato</a></li>
-                            </ul>
+                            <a href="Controller?command=ListarContasDeClientes" >Conta</a>
                         </li>
                         <li>
                             <a href="Controller?command=Sair">Sair</a>

@@ -47,7 +47,14 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">Contas</a>
                             <ul class="nav dropdown-menu">
                                 <li><a href="cadastroConta.jsp">Abrir Conta</a></li>
-                                <li><a href="#">Buscar Contas</a></li>
+                                <li><a href="listarContas.jsp">Buscar Contas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Movimentações Financeiras</a>
+                            <ul class="nav dropdown-menu">
+                                <li><a href="sacar.jsp">Registrar Saque</a></li>
+                                <li><a href="depositar.jsp">Registrar Depósito</a></li>
                             </ul>
                         </li>
                         <li>

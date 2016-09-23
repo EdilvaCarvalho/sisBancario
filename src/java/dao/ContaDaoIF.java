@@ -20,4 +20,10 @@ public interface ContaDaoIF {
     
     public void adicionaTitulares(List<String> cpfTitular, String numeroConta);
     
+    public List<Conta> listar();
+    
+    public Conta getConta(String numeroConta);
+    
+    public List<Conta> contasDoCliente(String cpfTitular);
+    
 }

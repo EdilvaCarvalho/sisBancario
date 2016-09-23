@@ -1,49 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <servlet>
-        <servlet-name>CadastrarUsuario</servlet-name>
-        <servlet-class>servlets.CadastrarUsuario</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CadastroAgencia</servlet-name>
-        <servlet-class>servlets.CadastroAgencia</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CadastrarConta</servlet-name>
-        <servlet-class>servlets.CadastrarConta</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Autenticar</servlet-name>
-        <servlet-class>servlets.Autenticar</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ExcluirUsuario</servlet-name>
-        <servlet-class>servlets.ExcluirUsuario</servlet-class>
-    </servlet>
+    
     <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>controller.Controller</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>CadastrarUsuario</servlet-name>
-        <url-pattern>/CadastrarUsuario</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CadastroAgencia</servlet-name>
-        <url-pattern>/CadastroAgencia</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CadastrarConta</servlet-name>
-        <url-pattern>/CadastrarConta</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Autenticar</servlet-name>
-        <url-pattern>/Autenticar</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ExcluirUsuario</servlet-name>
-        <url-pattern>/ExcluirUsuario</url-pattern>
-    </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
@@ -53,4 +15,5 @@
             30
         </session-timeout>
     </session-config>
+    
 </web-app>
