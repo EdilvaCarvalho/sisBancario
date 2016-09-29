@@ -16,6 +16,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
         <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+        <script src="js/bootstrap.min.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -35,7 +36,7 @@
                             <td><strong>DETALHAR CONTA</strong></td>
                         </tr>
                         <c:forEach var="conta" items="${listaContas.listar()}">
-                            <c:if test="${(conta.saldo >= valor1) && (conta.saldo <= valor2)}">
+                            <c:if test="${(conta.saldo >= valor1) && (conta.saldo <= valor2) && (conta.agencia.numero == agencia.numero)}">
                                 <tr class="row">
                                     <td>${conta.numero}</td>
                                     <td><df:dataFormatada data="${conta.dataAbertura}" /></td>
@@ -51,6 +52,5 @@
                 </div>
             </div>
         </div>
-        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

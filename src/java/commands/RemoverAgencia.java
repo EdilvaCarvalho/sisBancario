@@ -19,7 +19,8 @@ public class RemoverAgencia implements Command{
     public void execute(HttpServletRequest request, HttpServletResponse response) {
         String numAgencia = request.getParameter("numero");
         ExcluirAgenciaBo remover = new ExcluirAgenciaBo();
-        request.setAttribute("pagina", "listarAgencias.jsp");
+        String url = request.getHeader("referer");
+        request.setAttribute("pagina", url);
         try {
             if(remover.excluir(numAgencia)){
                 request.setAttribute("mensagem", "Agência removido com sucesso!");

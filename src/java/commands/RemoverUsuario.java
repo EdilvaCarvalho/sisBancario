@@ -22,7 +22,8 @@ public class RemoverUsuario implements Command{
         
         String cpf = request.getParameter("cpf");
         ExcluirUsuarioBo remover = new ExcluirUsuarioBo();
-        request.setAttribute("pagina", "listarUsuarios.jsp");
+        String url = request.getHeader("referer");
+        request.setAttribute("pagina", url);
         try {
             if(remover.excluir(cpf)){
                 request.setAttribute("mensagem", "Usuário removido com sucesso!");

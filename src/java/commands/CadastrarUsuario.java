@@ -26,7 +26,8 @@ public class CadastrarUsuario implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) {
         Usuario usuario = dadosDoUsuario(request);
         CadastrarUsuarioBo cadastro = new CadastrarUsuarioBo();
-        request.setAttribute("pagina", "cadastroUsuario.jsp");
+        String url = request.getHeader("referer");
+        request.setAttribute("pagina", url);
         if (cadastro.cadastrar(usuario)) {
 
             if (usuario.getTipo() == TipoUsuario.GERENTE_DE_AGENCIA) {

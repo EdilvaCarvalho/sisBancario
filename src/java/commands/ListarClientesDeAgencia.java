@@ -11,7 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelo.AgenciaPorGerente;
 import modelo.ListarClientesBo;
 
 /**
@@ -23,9 +22,7 @@ public class ListarClientesDeAgencia implements Command{
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession sessao = request.getSession();
-        Usuario usuario = (Usuario) sessao.getAttribute("usuario");
-        AgenciaPorGerente a = new AgenciaPorGerente();
-        Agencia agencia = a.exibir(usuario.getCpf());
+        Agencia agencia = (Agencia) sessao.getAttribute("agencia");
         ListarClientesBo listarClientes = new ListarClientesBo();
         List<Usuario> lista = listarClientes.listar(agencia.getNumero());
         

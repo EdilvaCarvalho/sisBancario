@@ -231,6 +231,7 @@ public class UsuarioDao implements UsuarioDaoIF{
         return lista;
     }
     
+    @Override
     public List<Usuario> listarClientes(String agencia){
         PreparedStatement ps;
         List<Usuario> lista = new ArrayList<>();

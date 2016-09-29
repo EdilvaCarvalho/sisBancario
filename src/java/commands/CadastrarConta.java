@@ -28,7 +28,8 @@ public class CadastrarConta implements Command {
             Conta conta = dadosDaConta(request);
             AbrirConta abrirConta = new AbrirConta();
             String agencia = request.getParameter("agencia");
-            request.setAttribute("pagina", "cadastroConta.jsp");
+            String url = request.getHeader("referer");
+            request.setAttribute("pagina", url);
             if (!abrirConta.cadastrar(conta, agencia)) {
                 try {
                     request.setAttribute("mensagem", "Erro ao abrir da conta!");
@@ -64,15 +65,15 @@ public class CadastrarConta implements Command {
             double saldo = Double.parseDouble(request.getParameter("saldo"));
             conta.setSaldo(saldo);
         }
-        
+
         String[] titular = request.getParameterValues("cpf");
         List<String> lista = new ArrayList<>();
         lista.addAll(Arrays.asList(titular));
-        
+
         List<Usuario> listaUser = new ArrayList<>();
         ExibirUsuarioBo user = new ExibirUsuarioBo();
         for (String u : lista) {
-            listaUser.add(user.exibir(u));  
+            listaUser.add(user.exibir(u));
         }
         conta.setTitulares(listaUser);
 

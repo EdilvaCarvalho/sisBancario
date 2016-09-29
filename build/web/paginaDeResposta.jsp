@@ -9,11 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <title>Resposta | Banco da Gente</title>
     </head>
     <body>
         <div>
-            <jsp:include page="paginaDoAdministrador.jsp"/>
+            <br><br><br>
             <div class="container text-center">
                 <h3>${mensagem}</h3>
                 <div class="col-md-12 text-center">
@@ -21,5 +22,6 @@
                 </div>
             </div>
         </div>
+        <div><jsp:include page="footer.html"/></div>
     </body>
 </html>

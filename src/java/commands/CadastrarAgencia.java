@@ -26,7 +26,8 @@ public class CadastrarAgencia implements Command{
         Agencia agencia = dadosDaAgencia(request);
         CadastrarAgenciaBo cadastro = new CadastrarAgenciaBo();
         
-        request.setAttribute("pagina", "cadastroAgencia.jsp");
+        String url = request.getHeader("referer");
+        request.setAttribute("pagina", url);
         if (!cadastro.cadastrar(agencia)) {
             try {
                 request.setAttribute("mensagem", "Erro ao cadastrar agência!");

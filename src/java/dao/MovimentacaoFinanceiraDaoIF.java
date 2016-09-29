@@ -1,7 +1,6 @@
 
 package dao;
 
-import entidades.Conta;
 import entidades.MovimentacaoFinanceira;
 import java.util.List;
 

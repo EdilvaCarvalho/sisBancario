@@ -5,7 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="/WEB-INF/myTags" prefix="df" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,6 +15,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
         <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+        <script src="js/bootstrap.min.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -30,11 +32,11 @@
                             <td><strong>HORA</strong></td>
                             <td><strong>TIPO</strong></td>
                             <td><strong>VALOR</strong></td>
-                            <td><strong>TITULAR</strong></td>
+                            <td><strong>ATOR</strong></td>
                         </tr>
                         <c:forEach var="movimentacao" items="${requestScope.listaDeMovimentacoes}">
                             <tr class="row">
-                                <td>${movimentacao.data}</td>
+                                <td><df:dataFormatada data="${movimentacao.data}" /></td>
                                 <td>${movimentacao.hora}</td>
                                 <td>${movimentacao.tipo}</td>
                                 <td>${movimentacao.valor}</td>
@@ -48,6 +50,5 @@
                 </div>
             </div>
         </div>
-        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

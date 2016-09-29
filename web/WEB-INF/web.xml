@@ -16,4 +16,12 @@
         </session-timeout>
     </session-config>
     
+    <filter>
+        <filter-name>VerificarSessao</filter-name>
+        <filter-class>filtros.VerificarSessao</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>VerificarSessao</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
 </web-app>
